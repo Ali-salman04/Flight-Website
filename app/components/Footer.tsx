@@ -11,10 +11,10 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ currentPage, setCurrentPage }) => {
   const quickLinks = [
     { name: 'Home', id: 'home' },
-    { name: 'Flights', id: 'flights' },
-    { name: 'Hotels', id: 'hotels' },
-    { name: 'Cars', id: 'cars' },
-    { name: 'Tours', id: 'tours' },
+    // { name: 'Flights', id: 'flights' },
+    // { name: 'Hotels', id: 'hotels' },
+    // { name: 'Cars', id: 'cars' },
+    // { name: 'Tours', id: 'tours' },
     { name: 'Contact', id: 'contact' }
   ];
 
