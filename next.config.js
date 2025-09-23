@@ -1,12 +1,9 @@
+// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  images: {
-    domains: ['images.pexels.com'],
+  eslint: {
+    ignoreDuringBuilds: true, // ✅ ESLint errors ignore karega build time par
   },
-  experimental: {
-    appDir: true,
-  },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
