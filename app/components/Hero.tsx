@@ -1,9 +1,71 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Search, Calendar, Users, MapPin, Plane, Mail, User, Phone } from 'lucide-react';
+import { Search, Calendar, Users, MapPin, Plane, Mail, User, Phone, X, CheckCircle, AlertCircle } from 'lucide-react';
 
-const Hero: React.FC = () => {
+// Beautiful Alert Card Component
+const AlertCard = ({ type, title, message, onClose, isVisible }) => {
+  if (!isVisible) return null;
+
+  const getCardStyle = () => {
+    switch (type) {
+      case 'success':
+        return 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200 text-green-800';
+      case 'error':
+        return 'bg-gradient-to-r from-red-50 to-rose-50 border-red-200 text-red-800';
+      case 'warning':
+        return 'bg-gradient-to-r from-yellow-50 to-amber-50 border-yellow-200 text-yellow-800';
+      default:
+        return 'bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200 text-blue-800';
+    }
+  };
+
+  const getIcon = () => {
+    switch (type) {
+      case 'success':
+        return <CheckCircle className="h-6 w-6 text-green-600" />;
+      case 'error':
+      case 'warning':
+        return <AlertCircle className="h-6 w-6 text-red-600" />;
+      default:
+        return <AlertCircle className="h-6 w-6 text-blue-600" />;
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-fade-in">
+      <div className={`${getCardStyle()} max-w-md w-full mx-auto rounded-xl border-2 shadow-2xl transform animate-scale-in`}>
+        <div className="p-6">
+          <div className="flex items-start space-x-4">
+            <div className="flex-shrink-0">
+              {getIcon()}
+            </div>
+            <div className="flex-1">
+              <h3 className="text-lg font-semibold mb-2">{title}</h3>
+              <p className="text-sm opacity-90 leading-relaxed">{message}</p>
+            </div>
+            <button
+              onClick={onClose}
+              className="flex-shrink-0 ml-4 text-gray-400 hover:text-gray-600 transition-colors duration-200"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+          <div className="mt-6 flex justify-end">
+            <button
+              onClick={onClose}
+              className="px-6 py-2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 shadow-sm"
+            >
+              Got it!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Hero = () => {
   const [searchData, setSearchData] = useState({
     from: '',
     to: '',
@@ -17,19 +79,42 @@ const Hero: React.FC = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [alertCard, setAlertCard] = useState({
+    isVisible: false,
+    type: 'success',
+    title: '',
+    message: ''
+  });
 
   const popularCities = [
     'New York', 'London', 'Paris', 'Tokyo', 'Dubai', 'Sydney', 'Singapore', 'Mumbai', 'Bangkok', 'Istanbul'
   ];
 
-  const handleInputChange = (field: string, value: string | number) => {
+  const showAlert = (type, title, message) => {
+    setAlertCard({
+      isVisible: true,
+      type,
+      title,
+      message
+    });
+  };
+
+  const closeAlert = () => {
+    setAlertCard(prev => ({ ...prev, isVisible: false }));
+  };
+
+  const handleInputChange = (field, value) => {
     setSearchData(prev => ({ ...prev, [field]: value }));
   };
 
   const handleSearch = async () => {
     // Validate required fields
     if (!searchData.from || !searchData.to || !searchData.departure || !searchData.email) {
-      alert('Please fill in all required fields (From, To, Departure Date, and Email)');
+      showAlert(
+        'warning',
+        'Missing Required Information',
+        'Please fill in all required fields: From, To, Departure Date, and Email Address to proceed with your flight search.'
+      );
       return;
     }
 
@@ -47,7 +132,11 @@ const Hero: React.FC = () => {
       const result = await response.json();
 
       if (response.ok) {
-        alert('Flight inquiry sent successfully! We will contact you soon with the best deals.');
+        showAlert(
+          'success',
+          'Flight Inquiry Sent Successfully! ✈️',
+          'We have received your flight request and will contact you soon with the best deals and options. Check your email for confirmation.'
+        );
         // Reset form
         setSearchData({
           from: '',
@@ -61,11 +150,19 @@ const Hero: React.FC = () => {
           phone: ''
         });
       } else {
-        alert(result.error || 'Failed to send inquiry. Please try again.');
+        showAlert(
+          'error',
+          'Unable to Send Inquiry',
+          result.error || 'We encountered an issue while processing your request. Please check your information and try again.'
+        );
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Failed to send inquiry. Please check your connection and try again.');
+      showAlert(
+        'error',
+        'Connection Error',
+        'Unable to connect to our servers. Please check your internet connection and try again in a moment.'
+      );
     } finally {
       setIsLoading(false);
     }
@@ -301,6 +398,80 @@ const Hero: React.FC = () => {
       <div className="absolute top-1/4 right-10 text-white opacity-30 animate-float hidden lg:block">
         <Plane className="h-16 w-16" />
       </div>
+
+      {/* Beautiful Alert Card */}
+      <AlertCard
+        type={alertCard.type}
+        title={alertCard.title}
+        message={alertCard.message}
+        isVisible={alertCard.isVisible}
+        onClose={closeAlert}
+      />
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes scale-in {
+          from { 
+            opacity: 0; 
+            transform: scale(0.9) translateY(-20px); 
+          }
+          to { 
+            opacity: 1; 
+            transform: scale(1) translateY(0); 
+          }
+        }
+        
+        @keyframes slide-up {
+          from { 
+            opacity: 0; 
+            transform: translateY(30px); 
+          }
+          to { 
+            opacity: 1; 
+            transform: translateY(0); 
+          }
+        }
+        
+        @keyframes fade-in-up {
+          from { 
+            opacity: 0; 
+            transform: translateY(20px); 
+          }
+          to { 
+            opacity: 1; 
+            transform: translateY(0); 
+          }
+        }
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        
+        .animate-fade-in {
+          animation: fade-in 1s ease-out;
+        }
+        
+        .animate-scale-in {
+          animation: scale-in 0.3s ease-out;
+        }
+        
+        .animate-slide-up {
+          animation: slide-up 0.8s ease-out;
+        }
+        
+        .animate-fade-in-up {
+          animation: fade-in-up 1s ease-out 0.5s both;
+        }
+        
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 };
