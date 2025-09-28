@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Header from './components/Header';
+import AirlineShowcase from './components/AirlineShowcase';
 import Hero from './components/Hero';
 import WhyChooseUs from './components/WhyChooseUs';
 import ExploreDestinations from './components/ExploreDestinations';
@@ -13,6 +14,7 @@ import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 import ContactPage from './components/ContactPage';
 import WhatsAppButton from './components/WhatsAppButton';
+// import BookingPage from './components/BookingPage';
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -21,10 +23,13 @@ export default function Home() {
     switch (currentPage) {
       case 'contact':
         return <ContactPage />;
+      // case 'booking':
+      //   return <BookingPage />;
       default:
         return (
           <>
             <Hero />
+            <AirlineShowcase />
             <div className="flex flex-col lg:flex-row">
               <ExploreDestinations />
               <WhyChooseUs />
