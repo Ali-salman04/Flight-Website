@@ -3,11 +3,47 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send, MessageCircle, X, CheckCircle, AlertCircle } from 'lucide-react';
 
+// Type definitions for the components
+interface AlertCardProps {
+  type: 'success' | 'error' | 'warning' | 'info';
+  title: string;
+  message: string;
+  onClose: () => void;
+  isVisible: boolean;
+}
+
+interface ContactInfo {
+  icon: React.ReactNode;
+  title: string;
+  details: string[];
+  description: string;
+}
+
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+}
+
+interface AlertState {
+  isVisible: boolean;
+  type: 'success' | 'error' | 'warning' | 'info';
+  title: string;
+  message: string;
+}
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
 // Beautiful Alert Card Component
-const AlertCard = ({ type, title, message, onClose, isVisible }) => {
+const AlertCard: React.FC<AlertCardProps> = ({ type, title, message, onClose, isVisible }) => {
   if (!isVisible) return null;
 
-  const getCardStyle = () => {
+  const getCardStyle = (): string => {
     switch (type) {
       case 'success':
         return 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200 text-green-800';
@@ -20,7 +56,7 @@ const AlertCard = ({ type, title, message, onClose, isVisible }) => {
     }
   };
 
-  const getIcon = () => {
+  const getIcon = (): React.ReactNode => {
     switch (type) {
       case 'success':
         return <CheckCircle className="h-6 w-6 text-green-600" />;
@@ -65,8 +101,8 @@ const AlertCard = ({ type, title, message, onClose, isVisible }) => {
   );
 };
 
-const ContactPage = () => {
-  const [formData, setFormData] = useState({
+const ContactPage: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
@@ -74,15 +110,15 @@ const ContactPage = () => {
     message: ''
   });
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [alertCard, setAlertCard] = useState({
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [alertCard, setAlertCard] = useState<AlertState>({
     isVisible: false,
     type: 'success',
     title: '',
     message: ''
   });
 
-  const showAlert = (type, title, message) => {
+  const showAlert = (type: AlertState['type'], title: string, message: string): void => {
     setAlertCard({
       isVisible: true,
       type,
@@ -91,15 +127,15 @@ const ContactPage = () => {
     });
   };
 
-  const closeAlert = () => {
+  const closeAlert = (): void => {
     setAlertCard(prev => ({ ...prev, isVisible: false }));
   };
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (field: keyof FormData, value: string): void => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     
     // Basic validation
@@ -151,7 +187,7 @@ const ContactPage = () => {
     }
   };
 
-  const contactInfo = [
+  const contactInfo: ContactInfo[] = [
     {
       icon: <Phone className="h-6 w-6" />,
       title: '24/7 Phone Support',
@@ -175,6 +211,25 @@ const ContactPage = () => {
       title: 'Business Hours',
       details: ['Mon - Fri: 9 AM - 9 PM', 'Sat - Sun: 10 AM - 6 PM'],
       description: 'Extended hours for your convenience'
+    }
+  ];
+
+  const faqs: FAQ[] = [
+    {
+      question: "How can I cancel or change my flight booking?",
+      answer: "You can cancel or change your booking by contacting our customer service team at +1 (555) 123-4567 or through your booking confirmation email. Cancellation and change fees may apply depending on the airline's policy."
+    },
+    {
+      question: "What is your refund policy?",
+      answer: "Refunds are processed according to the airline's refund policy. Refundable tickets can be refunded minus any applicable fees. Non-refundable tickets may be eligible for travel credits. Contact us for specific details about your booking."
+    },
+    {
+      question: "Do you offer 24/7 customer support?",
+      answer: "Yes, we provide 24/7 customer support for urgent travel assistance. Our phone lines are always open, and our email support responds within 2 hours during business hours."
+    },
+    {
+      question: "How far in advance should I book my flight?",
+      answer: "We recommend booking domestic flights 1-3 months in advance and international flights 2-6 months in advance for the best deals. However, we can help you find great prices even for last-minute bookings."
     }
   ];
 
@@ -384,24 +439,7 @@ const ContactPage = () => {
           </h2>
           
           <div className="space-y-6">
-            {[
-              {
-                question: "How can I cancel or change my flight booking?",
-                answer: "You can cancel or change your booking by contacting our customer service team at +1 (555) 123-4567 or through your booking confirmation email. Cancellation and change fees may apply depending on the airline's policy."
-              },
-              {
-                question: "What is your refund policy?",
-                answer: "Refunds are processed according to the airline's refund policy. Refundable tickets can be refunded minus any applicable fees. Non-refundable tickets may be eligible for travel credits. Contact us for specific details about your booking."
-              },
-              {
-                question: "Do you offer 24/7 customer support?",
-                answer: "Yes, we provide 24/7 customer support for urgent travel assistance. Our phone lines are always open, and our email support responds within 2 hours during business hours."
-              },
-              {
-                question: "How far in advance should I book my flight?",
-                answer: "We recommend booking domestic flights 1-3 months in advance and international flights 2-6 months in advance for the best deals. However, we can help you find great prices even for last-minute bookings."
-              }
-            ].map((faq, index) => (
+            {faqs.map((faq, index) => (
               <div 
                 key={index} 
                 className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slide-up"

@@ -3,11 +3,39 @@
 import React, { useState } from 'react';
 import { Search, Calendar, Users, MapPin, Plane, Mail, User, Phone, X, CheckCircle, AlertCircle } from 'lucide-react';
 
+// Type definitions
+interface AlertCardProps {
+  type: 'success' | 'error' | 'warning' | 'info';
+  title: string;
+  message: string;
+  onClose: () => void;
+  isVisible: boolean;
+}
+
+interface SearchData {
+  from: string;
+  to: string;
+  departure: string;
+  return: string;
+  passengers: number;
+  tripType: 'round-trip' | 'one-way';
+  email: string;
+  name: string;
+  phone: string;
+}
+
+interface AlertState {
+  isVisible: boolean;
+  type: 'success' | 'error' | 'warning' | 'info';
+  title: string;
+  message: string;
+}
+
 // Beautiful Alert Card Component
-const AlertCard = ({ type, title, message, onClose, isVisible }) => {
+const AlertCard: React.FC<AlertCardProps> = ({ type, title, message, onClose, isVisible }) => {
   if (!isVisible) return null;
 
-  const getCardStyle = () => {
+  const getCardStyle = (): string => {
     switch (type) {
       case 'success':
         return 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200 text-green-800';
@@ -20,7 +48,7 @@ const AlertCard = ({ type, title, message, onClose, isVisible }) => {
     }
   };
 
-  const getIcon = () => {
+  const getIcon = (): React.ReactNode => {
     switch (type) {
       case 'success':
         return <CheckCircle className="h-6 w-6 text-green-600" />;
@@ -65,8 +93,8 @@ const AlertCard = ({ type, title, message, onClose, isVisible }) => {
   );
 };
 
-const Hero = () => {
-  const [searchData, setSearchData] = useState({
+const Hero: React.FC = () => {
+  const [searchData, setSearchData] = useState<SearchData>({
     from: '',
     to: '',
     departure: '',
@@ -78,19 +106,19 @@ const Hero = () => {
     phone: ''
   });
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [alertCard, setAlertCard] = useState({
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [alertCard, setAlertCard] = useState<AlertState>({
     isVisible: false,
     type: 'success',
     title: '',
     message: ''
   });
 
-  const popularCities = [
+  const popularCities: string[] = [
     'New York', 'London', 'Paris', 'Tokyo', 'Dubai', 'Sydney', 'Singapore', 'Mumbai', 'Bangkok', 'Istanbul'
   ];
 
-  const showAlert = (type, title, message) => {
+  const showAlert = (type: AlertState['type'], title: string, message: string): void => {
     setAlertCard({
       isVisible: true,
       type,
@@ -99,15 +127,15 @@ const Hero = () => {
     });
   };
 
-  const closeAlert = () => {
+  const closeAlert = (): void => {
     setAlertCard(prev => ({ ...prev, isVisible: false }));
   };
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (field: keyof SearchData, value: string | number): void => {
     setSearchData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSearch = async () => {
+  const handleSearch = async (): Promise<void> => {
     // Validate required fields
     if (!searchData.from || !searchData.to || !searchData.departure || !searchData.email) {
       showAlert(
@@ -168,6 +196,14 @@ const Hero = () => {
     }
   };
 
+  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    handleInputChange('tripType', e.target.value as 'round-trip' | 'one-way');
+  };
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    handleInputChange('passengers', parseInt(e.target.value));
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -201,7 +237,7 @@ const Hero = () => {
                 name="tripType"
                 value="round-trip"
                 checked={searchData.tripType === 'round-trip'}
-                onChange={(e) => handleInputChange('tripType', e.target.value)}
+                onChange={handleRadioChange}
                 className="text-orange-600 focus:ring-orange-500"
               />
               <span className="text-gray-700 font-medium">Round Trip</span>
@@ -212,7 +248,7 @@ const Hero = () => {
                 name="tripType"
                 value="one-way"
                 checked={searchData.tripType === 'one-way'}
-                onChange={(e) => handleInputChange('tripType', e.target.value)}
+                onChange={handleRadioChange}
                 className="text-orange-600 focus:ring-orange-500"
               />
               <span className="text-gray-700 font-medium">One Way</span>
@@ -351,7 +387,7 @@ const Hero = () => {
                 <Users className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
                 <select
                   value={searchData.passengers}
-                  onChange={(e) => handleInputChange('passengers', parseInt(e.target.value))}
+                  onChange={handleSelectChange}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent appearance-none"
                 >
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
