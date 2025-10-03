@@ -165,7 +165,7 @@ const ContactPage: React.FC = () => {
         showAlert(
           'success',
           'Message Sent Successfully! 📧',
-          'Thank you for reaching out to us! We have received your message and will get back to you within 24 hours. Check your email for confirmation.'
+          'Thank you for reaching out to us! We have received your message and will get back to you within 2 hours. Check your email for confirmation.'
         );
         setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       } else {
@@ -191,19 +191,19 @@ const ContactPage: React.FC = () => {
     {
       icon: <Phone className="h-6 w-6" />,
       title: '24/7 Phone Support',
-      details: ['+1 (555) 123-4567', '+1 (555) 987-6543'],
+      details: ['(+62) 4681 47485'],
       description: 'Available 24/7 for urgent travel assistance'
     },
     {
       icon: <Mail className="h-6 w-6" />,
       title: 'Email Support',
-      details: ['info@mastersflights.com', 'support@mastersflights.com'],
-      description: 'Response within 2 hours during business hours'
+      details: ['info@Starwayflights.com', 'support@Starwayflights.com'],
+      description: 'Response within 10 minute during business hours'
     },
     {
       icon: <MapPin className="h-6 w-6" />,
       title: 'Office Address',
-      details: ['123 Travel Street', 'New York, NY 10001'],
+      details: ['712 Pittwater Rd, Sydney', '2100, Australia'], 
       description: 'Visit our office Monday - Friday, 9 AM - 6 PM'
     },
     {
@@ -389,7 +389,7 @@ const ContactPage: React.FC = () => {
                 <div className="text-center">
                   <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                   <p className="text-gray-500 font-semibold">Interactive Map</p>
-                  <p className="text-sm text-gray-400">123 Travel Street, New York, NY 10001</p>
+                  <p className="text-sm text-gray-400">712 Pittwater Rd, Sydney, New South Wales 2100, Australia</p>
                 </div>
               </div>
 
@@ -403,7 +403,7 @@ const ContactPage: React.FC = () => {
                       className="flex items-center space-x-3 text-orange-600 hover:text-orange-700 transition-colors duration-300 transform hover:scale-105"
                     >
                       <Phone className="h-5 w-5" />
-                      <span className="font-medium">Call Now: +1 (555) 123-4567</span>
+                      <span className="font-medium">Call Now:(+62) 4681 47485</span>
                     </a>
                     <a
                       href="mailto:info@mastersflights.com"

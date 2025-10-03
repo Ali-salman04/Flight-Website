@@ -29,8 +29,8 @@ const Footer: React.FC<FooterProps> = ({ currentPage, setCurrentPage }) => {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-2 mb-6">
-              <Plane className="h-8 w-8 text-orange-600" />
-              <span className="text-2xl font-bold">Masters Flights</span>
+              <img src="/27Sep24 Simon  Free Upload1.png" alt="Starway Flights Logo" className="h-16 w-16 object-contain" />
+              <span className="text-2xl font-bold">Starway Flights</span>
             </div>
             <p className="text-gray-300 mb-6">
               Your trusted partner for amazing travel experiences. We provide the best flight deals 
@@ -85,22 +85,22 @@ const Footer: React.FC<FooterProps> = ({ currentPage, setCurrentPage }) => {
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-orange-600 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">+1 (555) 123-4567</p>
+                  <p className="text-gray-300">(+62) 4681 47485</p>
                   <p className="text-sm text-gray-400">Mon - Sun: 9am - 9pm</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-orange-600 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">info@mastersflights.com</p>
+                  <p className="text-gray-300">info@Starwayflights.com</p>
                   <p className="text-sm text-gray-400">24/7 Email Support</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-orange-600 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">123 Travel Street</p>
-                  <p className="text-sm text-gray-400">New York, NY 10001</p>
+                  <p className="text-gray-300">712 Pittwater Rd, Sydney</p>
+                  <p className="text-sm text-gray-400">New South Wales 2100, Australia</p>
                 </div>
               </div>
             </div>
@@ -109,7 +109,7 @@ const Footer: React.FC<FooterProps> = ({ currentPage, setCurrentPage }) => {
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
           <p className="text-gray-400">
-            © 2025 Masters Flights. All rights reserved. | Privacy Policy | Terms of Service
+            © 2025 Starway Flights. All rights reserved. | Privacy Policy | Terms of Service
           </p>
         </div>
       </div>

@@ -8,7 +8,7 @@ const PopularDestinations: React.FC = () => {
     {
       name: 'Santorini',
       country: 'Greece',
-      image: 'https://images.pexels.com/photos/161901/santorini-greece-island-travel-161901.jpeg?auto=compress&cs=tinysrgb&w=400',
+      image: 'https://images.pexels.com/photos/2901209/pexels-photo-2901209.jpeg?auto=compress&cs=tinysrgb&w=400',
       description: 'Beautiful white buildings and stunning sunsets'
     },
     {
@@ -20,7 +20,7 @@ const PopularDestinations: React.FC = () => {
     {
       name: 'Swiss Alps',
       country: 'Switzerland',
-      image: 'https://images.pexels.com/photos/38326/matterhorn-alpine-switzerland-pyramid-38326.jpeg?auto=compress&cs=tinysrgb&w=400',
+      image: 'https://images.pexels.com/photos/1770809/pexels-photo-1770809.jpeg?auto=compress&cs=tinysrgb&w=400',
       description: 'Breathtaking mountain landscapes'
     },
     {

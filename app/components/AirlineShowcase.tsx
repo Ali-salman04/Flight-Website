@@ -102,29 +102,45 @@ const AirlineShowcase: React.FC = () => {
     return () => clearInterval(interval);
   }, [airlines.length]);
 
-  return (
-    <section className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-4 relative overflow-hidden">
-      {/* Background Animation - Only render on client */}
-      {isClient && (
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full">
-            {floatingPlanes.map((plane, i) => (
-              <div
-                key={i}
-                className="absolute animate-float"
-                style={{
-                  left: plane.left,
-                  top: plane.top,
-                  animationDelay: plane.animationDelay,
-                  animationDuration: plane.animationDuration
-                }}
-              >
-                <Plane className="h-4 w-4 text-white opacity-30" />
-              </div>
-            ))}
+  // Don't render until client-side to avoid hydration issues
+  if (!isClient) {
+    return (
+      <section className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-4 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center">
+            <p className="text-white text-sm mb-4 opacity-80">
+              ✈️ Partnered with World's Best Airlines
+            </p>
+            <div className="h-20"></div>
           </div>
         </div>
-      )}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-red-500 to-purple-500"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-orange-500"></div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-4 relative overflow-hidden">
+      {/* Background Animation */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-full h-full">
+          {floatingPlanes.map((plane, i) => (
+            <div
+              key={i}
+              className="absolute animate-float"
+              style={{
+                left: plane.left,
+                top: plane.top,
+                animationDelay: plane.animationDelay,
+                animationDuration: plane.animationDuration
+              }}
+            >
+              <Plane className="h-4 w-4 text-white opacity-30" />
+            </div>
+          ))}
+        </div>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
