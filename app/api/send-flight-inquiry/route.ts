@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
       from: `"${name || 'Client'}" <${process.env.EMAIL_USER}>`, // Gmail sender
       replyTo: email, // ✅ Client ki email yahan show hogi
       to: process.env.COMPANY_EMAIL || process.env.EMAIL_USER,
-      subject: 'New Flight Inquiry - Masters Flights',
+      subject: 'New Flight Inquiry - Starway Flights',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
           <div style="background: linear-gradient(135deg, #ea580c, #dc2626); color: white; padding: 20px; border-radius: 10px 10px 0 0; text-align: center;">
@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
               This inquiry was submitted on ${new Date().toLocaleString()}
             </p>
             <p style="margin: 10px 0 0 0; font-size: 12px; opacity: 0.8;">
-              Masters Flights - Your Trusted Travel Partner
+              Starway Flights - Your Trusted Travel Partner
             </p>
           </div>
         </div>

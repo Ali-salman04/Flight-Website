@@ -5,7 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Masters Flights - Professional Flight Booking',
+  title: 'Starway Flights - Professional Flight Booking',
   description: 'Book flights with the best deals and exceptional service. Your trusted travel partner.',
 }
 
