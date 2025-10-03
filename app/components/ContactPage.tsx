@@ -197,7 +197,7 @@ const ContactPage: React.FC = () => {
     {
       icon: <Mail className="h-6 w-6" />,
       title: 'Email Support',
-      details: ['info@Starwayflights.com', 'support@Starwayflights.com'],
+      details: ['starwayflights@gmail.com'],
       description: 'Response within 10 minute during business hours'
     },
     {
@@ -410,7 +410,7 @@ const ContactPage: React.FC = () => {
                       className="flex items-center space-x-3 text-orange-600 hover:text-orange-700 transition-colors duration-300 transform hover:scale-105"
                     >
                       <Mail className="h-5 w-5" />
-                      <span className="font-medium">Email: info@mastersflights.com</span>
+                      <span className="font-medium">Email: starwayflights@gmail.com</span>
                     </a>
                   </div>
                 </div>

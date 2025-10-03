@@ -92,7 +92,7 @@ const Footer: React.FC<FooterProps> = ({ currentPage, setCurrentPage }) => {
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-orange-600 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">info@Starwayflights.com</p>
+                  <p className="text-gray-300">starwayflights@gmail.com</p>
                   <p className="text-sm text-gray-400">24/7 Email Support</p>
                 </div>
               </div>
