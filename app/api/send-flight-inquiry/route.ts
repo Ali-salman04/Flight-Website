@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
           <div style="background: linear-gradient(135deg, #ea580c, #dc2626); color: white; padding: 20px; border-radius: 10px 10px 0 0; text-align: center;">
             <h1 style="margin: 0; font-size: 24px;">✈️ New Flight Inquiry</h1>
-            <p style="margin: 10px 0 0 0; opacity: 0.9;">Masters Flights</p>
+            <p style="margin: 10px 0 0 0; opacity: 0.9;">Starway Flights</p>
           </div>
           
           <div style="padding: 30px; background: #f9f9f9;">
