@@ -406,7 +406,7 @@ const ContactPage: React.FC = () => {
                       <span className="font-medium">Call Now:(+62) 4681 47485</span>
                     </a>
                     <a
-                      href="mailto:info@mastersflights.com"
+                      href="mailto:starwayflights@gmail.com"
                       className="flex items-center space-x-3 text-orange-600 hover:text-orange-700 transition-colors duration-300 transform hover:scale-105"
                     >
                       <Mail className="h-5 w-5" />
