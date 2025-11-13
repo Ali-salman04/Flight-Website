@@ -47,7 +47,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage, setCurrentPage }) => {
               />
             </div>
             <span className="text-2xl font-bold text-white">
-              Starway Flights
+              Nova Flights
             </span>
           </div>
 

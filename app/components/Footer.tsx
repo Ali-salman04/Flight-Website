@@ -30,7 +30,7 @@ const Footer: React.FC<FooterProps> = ({ currentPage, setCurrentPage }) => {
           <div>
             <div className="flex items-center space-x-2 mb-6">
               <img src="/27Sep24 Simon  Free Upload1.png" alt="Starway Flights Logo" className="h-16 w-16 object-contain" />
-              <span className="text-2xl font-bold">Starway Flights</span>
+              <span className="text-2xl font-bold">Nova Flights</span>
             </div>
             <p className="text-gray-300 mb-6">
               Your trusted partner for amazing travel experiences. We provide the best flight deals 
@@ -85,7 +85,7 @@ const Footer: React.FC<FooterProps> = ({ currentPage, setCurrentPage }) => {
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-orange-600 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">(+62) 4681 47485</p>
+                  <p className="text-gray-300">(+61)-4800-09469</p>
                   <p className="text-sm text-gray-400">Mon - Sun: 9am - 9pm</p>
                 </div>
               </div>
@@ -109,7 +109,7 @@ const Footer: React.FC<FooterProps> = ({ currentPage, setCurrentPage }) => {
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
           <p className="text-gray-400">
-            © 2025 Starway Flights. All rights reserved. | Privacy Policy | Terms of Service
+            © 2025 Nova Flights. All rights reserved. | Privacy Policy | Terms of Service
           </p>
         </div>
       </div>
