@@ -191,7 +191,7 @@ const ContactPage: React.FC = () => {
     {
       icon: <Phone className="h-6 w-6" />,
       title: '24/7 Phone Support',
-      details: ['(+62) 4681 47485'],
+      details: ['(+61)-4800-09469'],
       description: 'Available 24/7 for urgent travel assistance'
     },
     {
@@ -217,7 +217,7 @@ const ContactPage: React.FC = () => {
   const faqs: FAQ[] = [
     {
       question: "How can I cancel or change my flight booking?",
-      answer: "You can cancel or change your booking by contacting our customer service team at +1 (555) 123-4567 or through your booking confirmation email. Cancellation and change fees may apply depending on the airline's policy."
+      answer: "You can cancel or change your booking by contacting our customer service team at (+61)-4800-09469 or through your booking confirmation email. Cancellation and change fees may apply depending on the airline's policy."
     },
     {
       question: "What is your refund policy?",
@@ -403,7 +403,7 @@ const ContactPage: React.FC = () => {
                       className="flex items-center space-x-3 text-orange-600 hover:text-orange-700 transition-colors duration-300 transform hover:scale-105"
                     >
                       <Phone className="h-5 w-5" />
-                      <span className="font-medium">Call Now:(+62) 4681 47485</span>
+                      <span className="font-medium">Call Now:(+61)-4800-09469</span>
                     </a>
                     <a
                       href="mailto:novaflights.au@gmail.com"
